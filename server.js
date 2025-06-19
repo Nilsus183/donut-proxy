@@ -15,7 +15,7 @@ app.get('/bot', async (req, res) => {
     });
     const stats = await statsRes.json();
 
-    const locRes = await fetch(`https://api.donutsmp.net/v1/location/${name}`, {
+    const locRes = await fetch(`https://api.donutsmp.net/v1/findplayer/${name}`, {
       headers: { Authorization: `Bearer ${TOKEN}` }
     });
     const location = await locRes.json();
@@ -23,6 +23,7 @@ app.get('/bot', async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.json({ stats: JSON.parse(stats.result), location });
   } catch (err) {
+    console.error("Fehler beim API-Aufruf:", err);
     res.status(500).send('Error fetching data');
   }
 });
