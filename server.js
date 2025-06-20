@@ -21,7 +21,7 @@ app.get('/bot', async (req, res) => {
     const location = await locRes.json();
 
     res.set('Access-Control-Allow-Origin', '*');
-    res.json({ stats: JSON.parse(stats.result), location });
+    res.json({ stats: stats.result, location });
   } catch (err) {
     console.error("Fehler beim API-Aufruf:", err);
     res.status(500).send('Error fetching data');
